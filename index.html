@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RWANDA DEMOGRAPHIC &amp; HEALTH SURVEY 2025 | NISR Dynamic Infographic</title>
+    <style>
+        :root {
+            --nisr-cyan: #25A9E0;
+            --nisr-navy: #1B5AA6;
+            --nisr-footer: #2171B5;
+            --nisr-green: #4EA847;
+            --nisr-ice: #E6F4FA;
+            --nisr-border: #BCE3F5;
+            --card-border: #A7A9AC;
+            --text-black: #1A1A1A;
+            --text-gray: #58595B;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #FFFFFF;
+            color: var(--text-black);
+        }
+
+        .page-shell {
+            max-width: 1480px;
+            margin: 0 auto;
+            padding: 16px 24px 0 24px;
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            padding: 8px 16px 18px 16px;
+        }
+
+        .nisr-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nisr-title {
+            font-size: 32px;
+            font-weight: 900;
+            color: var(--nisr-cyan);
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+        }
+
+        .canvas-frame {
+            border: 3px solid var(--nisr-border);
+            padding: 20px;
+            background: #FFFFFF;
+            position: relative;
+        }
+
+        .filter-strip {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid var(--nisr-border);
+        }
+
+        .filter-btn {
+            background: #FFFFFF;
+            color: var(--nisr-navy);
+            border: 1.5px solid var(--nisr-cyan);
+            border-radius: 20px;
+            padding: 6px 16px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--nisr-cyan);
+            color: #FFFFFF;
+        }
+
+        .upper-flow {
+            display: grid;
+            grid-template-columns: 1fr 1.15fr 1fr;
+            gap: 20px;
+            align-items: center;
+            margin-bottom: 26px;
+        }
+
+        @media (max-width: 1100px) {
+            .upper-flow {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .branch-col {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .branch-header {
+            font-size: 17px;
+            font-weight: 800;
+            color: var(--text-black);
+            text-align: center;
+            margin-bottom: 2px;
+        }
+
+        .lfs-card {
+            border: 1.5px solid var(--card-border);
+            border-radius: 12px;
+            padding: 14px 16px;
+            background: #FFFFFF;
+        }
+
+        .pill-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+
+        .pill-track {
+            flex: 1;
+            height: 13px;
+            background: var(--nisr-ice);
+            border-radius: 7px;
+            overflow: hidden;
+        }
+
+        .pill-fill {
+            height: 100%;
+            background: var(--nisr-cyan);
+            border-radius: 7px;
+            transition: width 0.4s ease;
+        }
+
+        .pill-fill.navy {
+            background: var(--nisr-navy);
+        }
+
+        .pill-val {
+            font-size: 23px;
+            font-weight: 900;
+            color: var(--nisr-cyan);
+        }
+
+        .pill-val.navy {
+            color: var(--nisr-navy);
+        }
+
+        .card-caption {
+            font-size: 13.5px;
+            font-weight: 700;
+            color: var(--text-gray);
+        }
+
+        .card-sub {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--nisr-green);
+            margin-top: 3px;
+        }
+
+        .center-hub {
+            background: radial-gradient(circle, var(--nisr-ice) 0%, #FFFFFF 72%);
+            padding: 12px;
+            text-align: center;
+        }
+
+        .hub-heading {
+            font-size: 19px;
+            font-weight: 800;
+            color: var(--text-black);
+            margin-bottom: 12px;
+        }
+
+        .hub-Row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+        }
+
+        .bracket-box {
+            border-left: 4px solid var(--nisr-cyan);
+            border-right: 4px solid var(--nisr-cyan);
+            border-radius: 18px;
+            padding: 8px 12px;
+            min-width: 130px;
+        }
+
+        .bracket-box.navy {
+            border-color: var(--nisr-navy);
+        }
+
+        .bracket-pct {
+            font-size: 22px;
+            font-weight: 900;
+            color: var(--nisr-cyan);
+        }
+
+        .bracket-box.navy .bracket-pct {
+            color: var(--nisr-navy);
+        }
+
+        .bracket-lbl {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-gray);
+        }
+
+        .mid-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 22px;
+            margin-bottom: 28px;
+        }
+
+        @media (max-width: 980px) {
+            .mid-split {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .split-box-title {
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--nisr-cyan);
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .split-box {
+            border: 1.5px solid var(--card-border);
+            border-radius: 16px;
+            padding: 18px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            gap: 14px;
+            background: #FFFFFF;
+        }
+
+        .split-stat {
+            max-width: 190px;
+        }
+
+        .split-stat .big-num {
+            font-size: 28px;
+            font-weight: 900;
+        }
+
+        .split-stat .stat-lbl {
+            font-size: 13px;
+            font-weight: 700;
+            margin-top: 2px;
+        }
+
+        .split-stat .stat-note {
+            font-size: 11.5px;
+            color: var(--text-gray);
+            font-weight: 600;
+        }
+
+        .gdp-section-headers {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .gdp-cat-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 16px;
+            font-weight: 900;
+        }
+
+        .gdp-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+            gap: 14px;
+            margin-bottom: 16px;
+        }
+
+        .gdp-card {
+            border: 2px solid var(--nisr-cyan);
+            border-radius: 10px;
+            padding: 14px 10px;
+            text-align: center;
+            background: #FFFFFF;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 170px;
+        }
+
+        .gdp-card.green {
+            border-color: var(--nisr-green);
+        }
+
+        .gdp-card.navy {
+            border-color: var(--nisr-navy);
+        }
+
+        .gdp-card-title {
+            font-size: 12.5px;
+            font-weight: 700;
+            color: var(--text-black);
+            margin-top: 8px;
+        }
+
+        .gdp-card-sub {
+            font-size: 11px;
+            color: var(--text-gray);
+            font-weight: 600;
+        }
+
+        .gdp-card-val {
+            font-size: 23px;
+            font-weight: 900;
+            color: var(--nisr-navy);
+            margin-top: 6px;
+        }
+
+        .gdp-card.green .gdp-card-val {
+            color: var(--nisr-green);
+        }
+
+        .note-line {
+            text-align: center;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-black);
+            margin: 14px 0 8px 0;
+        }
+
+        .imigongo-strip {
+            height: 20px;
+            background: repeating-linear-gradient(-45deg,
+                    #25A9E0,
+                    #25A9E0 10px,
+                    #4EA847 10px,
+                    #4EA847 20px,
+                    #1B5AA6 20px,
+                    #1B5AA6 30px,
+                    #FFFFFF 30px,
+                    #FFFFFF 40px);
+            border-top: 2px solid var(--nisr-navy);
+        }
+
+        footer {
+            background: var(--nisr-footer);
+            color: #FFFFFF;
+            padding: 16px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            font-size: 13.5px;
+            font-weight: 700;
+        }
+
+        .alu-credit {
+            background: var(--nisr-navy);
+            border: 1px solid var(--nisr-border);
+            padding: 6px 18px;
+            border-radius: 18px;
+            font-weight: 800;
+            color: #FFFFFF;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="page-shell">
+        <div class="top-bar">
+            <div class="nisr-brand">
+                <svg width="165" height="62" viewBox="0 0 165 62">
+                    <circle cx="28" cy="31" r="22" fill="none" stroke="#1B5AA6" stroke-width="4.5"
+                        stroke-dasharray="98 35" />
+                    <circle cx="28" cy="31" r="14" fill="none" stroke="#25A9E0" stroke-width="3"
+                        stroke-dasharray="58 26" />
+                    <circle cx="28" cy="31" r="5" fill="#1B5AA6" />
+                    <text x="58" y="39" font-family="Arial" font-size="40" font-weight="900" fill="#1B5AA6">nisr</text>
+                    <text x="59" y="50" font-family="Arial" font-size="7" font-weight="700" fill="#58595B">NATIONAL
+                        INSTITUTE OF</text>
+                    <text x="59" y="58" font-family="Arial" font-size="7" font-weight="700" fill="#58595B">STATISTICS OF
+                        RWANDA</text>
+                </svg>
+            </div>
+            <div class="nisr-title">RWANDA DEMOGRAPHIC &amp; HEALTH SURVEY 2025</div>
+        </div>
+
+        <div class="canvas-frame">
+            <div class="filter-strip" id="regionButtons">
+                <button class="filter-btn active" data-region="National">National (14,283 Women)</button>
+                <button class="filter-btn" data-region="Urban">Urban Residence</button>
+                <button class="filter-btn" data-region="Rural">Rural Residence</button>
+                <button class="filter-btn" data-region="Kigali">City of Kigali</button>
+                <button class="filter-btn" data-region="Northern">Northern Province</button>
+                <button class="filter-btn" data-region="Southern">Southern Province</button>
+                <button class="filter-btn" data-region="Western">Western Province</button>
+                <button class="filter-btn" data-region="Eastern">Eastern Province</button>
+            </div>
+
+            <div class="upper-flow">
+                <div class="branch-col">
+                    <div class="branch-header">Family Planning (Married Women)</div>
+                    <div class="lfs-card">
+                        <div class="pill-row">
+                            <svg width="36" height="36" viewBox="0 0 36 36">
+                                <rect x="4" y="8" width="28" height="20" rx="4" fill="none" stroke="#25A9E0"
+                                    stroke-width="3" />
+                                <line x1="18" y1="13" x2="18" y2="23" stroke="#25A9E0" stroke-width="3" />
+                                <line x1="13" y1="18" x2="23" y2="18" stroke="#25A9E0" stroke-width="3" />
+                            </svg>
+                            <div class="pill-track">
+                                <div class="pill-fill" id="barModernCpr" style="width: 64.2%"></div>
+                            </div>
+                            <div class="pill-val" id="valModernCpr">64.2%</div>
+                        </div>
+                        <div class="card-caption" id="capModernCpr">Modern contraceptive use (34.3% Implants | 14.3%
+                            Injectables)</div>
+                        <div class="card-sub">91.2% obtained from Public Medical Sector</div>
+                    </div>
+
+                    <div class="lfs-card">
+                        <div class="pill-row">
+                            <svg width="36" height="36" viewBox="0 0 36 36">
+                                <circle cx="18" cy="18" r="13" fill="none" stroke="#25A9E0" stroke-width="3" />
+                                <polyline points="18,10 18,18 24,22" fill="none" stroke="#25A9E0" stroke-width="2.5" />
+                            </svg>
+                            <div class="pill-track">
+                                <div class="pill-fill" id="barUnmet" style="width: 28%"></div>
+                            </div>
+                            <div class="pill-val" id="valUnmet">8.9%</div>
+                        </div>
+                        <div class="card-caption" id="capUnmet">Unmet need for family planning (Traditional methods:
+                            5.1%)</div>
+                        <div class="card-sub" id="subDemand">88.7% of Total Family Planning Demand Satisfied</div>
+                    </div>
+                </div>
+
+                <div class="center-hub">
+                    <div class="hub-heading" id="hubTitle">SURVEYED WOMEN (15–49 YEARS)</div>
+                    <div class="hub-Row">
+                        <div class="bracket-box">
+                            <svg width="44" height="34" viewBox="0 0 44 34">
+                                <circle cx="15" cy="10" r="6" fill="#25A9E0" />
+                                <path d="M5,30 C5,18 25,18 25,30 Z" fill="#25A9E0" />
+                                <circle cx="30" cy="12" r="5.5" fill="#1B5AA6" />
+                                <path d="M21,30 C21,20 39,20 39,30 Z" fill="#1B5AA6" />
+                            </svg>
+                            <div class="bracket-pct" id="hubLeftPct">69.3%</div>
+                            <div class="bracket-lbl">Married Using Any FP</div>
+                        </div>
+
+                        <svg width="190" height="190" viewBox="0 0 190 190">
+                            <circle cx="95" cy="95" r="70" fill="none" stroke="#1B5AA6" stroke-width="28" />
+                            <circle id="centerDonutArc" cx="95" cy="95" r="70" fill="none" stroke="#25A9E0"
+                                stroke-width="28" stroke-dasharray="305 440" transform="rotate(-90 95 95)" />
+                            <circle cx="95" cy="95" r="54" fill="#FFFFFF" />
+                            <text x="95" y="80" font-family="Arial" font-size="13" font-weight="700" fill="#58595B"
+                                text-anchor="middle" id="donutTopLbl">RDHS 2025</text>
+                            <text x="95" y="103" font-family="Arial" font-size="22" font-weight="900" fill="#1A1A1A"
+                                text-anchor="middle" id="donutSample">14,283</text>
+                            <text x="95" y="121" font-family="Arial" font-size="12" font-weight="700" fill="#1B5AA6"
+                                text-anchor="middle">Women</text>
+                        </svg>
+
+                        <div class="bracket-box navy">
+                            <svg width="44" height="34" viewBox="0 0 44 34">
+                                <circle cx="22" cy="10" r="6" fill="#1B5AA6" />
+                                <path d="M10,30 C10,18 34,18 34,30 Z" fill="#1B5AA6" />
+                            </svg>
+                            <div class="bracket-pct" id="hubRightPct">30.7%</div>
+                            <div class="bracket-lbl">Married Non-Users</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="branch-col">
+                    <div class="branch-header">Fertility &amp; Adolescent Indicators</div>
+                    <div class="lfs-card">
+                        <div class="pill-row">
+                            <svg width="36" height="36" viewBox="0 0 36 36">
+                                <circle cx="14" cy="11" r="6" fill="#1B5AA6" />
+                                <path d="M4,32 C4,20 24,20 24,32 Z" fill="#1B5AA6" />
+                                <circle cx="26" cy="18" r="4.5" fill="#25A9E0" />
+                                <path d="M19,32 C19,24 33,24 33,32 Z" fill="#25A9E0" />
+                            </svg>
+                            <div class="pill-track">
+                                <div class="pill-fill navy" id="barTfr" style="width: 62%"></div>
+                            </div>
+                            <div class="pill-val navy" id="valTfr">3.7</div>
+                        </div>
+                        <div class="card-caption" id="capTfr">Total Fertility Rate (Wanted TFR: 2.8 | Ideal Family Size:
+                            3.2)</div>
+                        <div class="card-sub">Median Birth Interval: 48.8 Months</div>
+                    </div>
+
+                    <div class="lfs-card">
+                        <div class="pill-row">
+                            <svg width="36" height="36" viewBox="0 0 36 36">
+                                <circle cx="18" cy="10" r="6" fill="#1B5AA6" />
+                                <path d="M8,32 L13,18 L23,18 L28,32 Z" fill="#1B5AA6" />
+                            </svg>
+                            <div class="pill-track">
+                                <div class="pill-fill navy" id="barTeen" style="width: 32%"></div>
+                            </div>
+                            <div class="pill-val navy" id="valTeen">8.1%</div>
+                        </div>
+                        <div class="card-caption" id="capTeen">Teenage pregnancy rate (aged 15–19 years)</div>
+                        <div class="card-sub" id="subTeen">5.6% have had a live birth | 2.3% currently pregnant</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mid-split">
+                <div>
+                    <div class="split-box-title">Maternal Care, Birth Registration &amp; Insurance Coverage</div>
+                    <div class="split-box">
+                        <div class="split-stat">
+                            <div class="big-num" style="color: var(--nisr-navy);" id="valIns">86.0%</div>
+                            <div class="stat-lbl" style="color: var(--nisr-navy);">Health Insurance</div>
+                            <div class="stat-note">93.7% Community Mutuelle</div>
+                        </div>
+
+                        <svg width="145" height="145" viewBox="0 0 145 145">
+                            <circle cx="72.5" cy="72.5" r="52" fill="none" stroke="#4EA847" stroke-width="20"
+                                stroke-dasharray="195 327" transform="rotate(-90 72.5 72.5)" />
+                            <circle cx="72.5" cy="72.5" r="52" fill="none" stroke="#25A9E0" stroke-width="20"
+                                stroke-dasharray="132 327" transform="rotate(125 72.5 72.5)" />
+                            <circle cx="72.5" cy="72.5" r="30" fill="none" stroke="#1A1A1A" stroke-width="2" />
+                            <rect x="58" y="62" width="29" height="21" rx="3" fill="none" stroke="#1A1A1A"
+                                stroke-width="2.2" />
+                            <line x1="72.5" y1="67" x2="72.5" y2="78" stroke="#4EA847" stroke-width="3" />
+                            <line x1="67" y1="72.5" x2="78" y2="72.5" stroke="#4EA847" stroke-width="3" />
+                        </svg>
+
+                        <div class="split-stat">
+                            <div class="big-num" style="color: var(--nisr-green);" id="valBirthReg">95.1%</div>
+                            <div class="stat-lbl" style="color: var(--nisr-green);">Births Registered (&lt;5)</div>
+                            <div class="stat-note">98.1% Skilled Birth Attendance</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="split-box-title">Early Childhood Survival &amp; Clean Energy Access</div>
+                    <div class="split-box">
+                        <div class="split-stat">
+                            <div class="big-num" style="color: var(--nisr-green);">26.8%</div>
+                            <div class="stat-lbl" style="color: var(--nisr-green);">Under-5 Stunting</div>
+                            <div class="stat-note">Down from 33.0% (2019–20)</div>
+                        </div>
+
+                        <svg width="145" height="145" viewBox="0 0 145 145">
+                            <circle cx="72.5" cy="72.5" r="52" fill="none" stroke="#4EA847" stroke-width="20"
+                                stroke-dasharray="210 327" transform="rotate(-90 72.5 72.5)" />
+                            <circle cx="72.5" cy="72.5" r="52" fill="none" stroke="#1B5AA6" stroke-width="20"
+                                stroke-dasharray="117 327" transform="rotate(140 72.5 72.5)" />
+                            <circle cx="72.5" cy="72.5" r="30" fill="none" stroke="#1A1A1A" stroke-width="2" />
+                            <path d="M72.5,55 L86,62 L86,75 C86,84 72.5,91 72.5,91 C72.5,91 59,84 59,75 L59,62 Z"
+                                fill="none" stroke="#1A1A1A" stroke-width="2.2" />
+                        </svg>
+
+                        <div class="split-stat">
+                            <div class="big-num" style="color: var(--nisr-navy);" id="valU5m">36 ‰</div>
+                            <div class="stat-lbl" style="color: var(--nisr-navy);">Under-5 Mortality</div>
+                            <div class="stat-note" id="noteU5m">Infant: 27‰ | Neonatal: 17‰</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gdp-section-headers">
+                <div class="gdp-cat-badge" style="color: var(--nisr-cyan);">
+                    <svg width="28" height="28" viewBox="0 0 28 28">
+                        <circle cx="14" cy="14" r="12" fill="none" stroke="#25A9E0" stroke-width="2" />
+                        <circle cx="14" cy="14" r="5" fill="#25A9E0" />
+                    </svg>
+                    MATERNAL &amp; CHILD HEALTH: 98.1% SKILLED BIRTHS
+                </div>
+                <div class="gdp-cat-badge" style="color: var(--nisr-green);">
+                    <svg width="28" height="28" viewBox="0 0 28 28">
+                        <circle cx="14" cy="14" r="12" fill="none" stroke="#4EA847" stroke-width="2" />
+                        <rect x="9" y="9" width="10" height="10" fill="#4EA847" />
+                    </svg>
+                    INFRASTRUCTURE: 74.1% ELECTRICITY
+                </div>
+                <div class="gdp-cat-badge" style="color: var(--nisr-navy);">
+                    <svg width="28" height="28" viewBox="0 0 28 28">
+                        <circle cx="14" cy="14" r="12" fill="none" stroke="#1B5AA6" stroke-width="2" />
+                        <polygon points="14,7 21,19 7,19" fill="#1B5AA6" />
+                    </svg>
+                    EQUITY &amp; DIGITAL ACCESS: 88.0% LITERACY
+                </div>
+            </div>
+
+            <div class="gdp-grid">
+                <div class="gdp-card">
+                    <svg width="54" height="54" viewBox="0 0 54 54">
+                        <circle cx="27" cy="27" r="24" fill="#1B5AA6" />
+                        <line x1="27" y1="15" x2="27" y2="39" stroke="#FFFFFF" stroke-width="5" />
+                        <line x1="15" y1="27" x2="39" y2="27" stroke="#FFFFFF" stroke-width="5" />
+                    </svg>
+                    <div class="gdp-card-title">Maternal Mortality</div>
+                    <div class="gdp-card-sub">Per 100,000 live births</div>
+                    <div class="gdp-card-val">149</div>
+                </div>
+
+                <div class="gdp-card">
+                    <svg width="54" height="54" viewBox="0 0 54 54">
+                        <rect x="10" y="14" width="34" height="28" rx="4" fill="none" stroke="#1B5AA6"
+                            stroke-width="3" />
+                        <polyline points="16,28 24,35 38,20" fill="none" stroke="#25A9E0" stroke-width="4" />
+                    </svg>
+                    <div class="gdp-card-title">4+ ANC Visits</div>
+                    <div class="gdp-card-sub">95% Any Skilled ANC</div>
+                    <div class="gdp-card-val">78.0%</div>
+                </div>
+
+                <div class="gdp-card">
+                    <svg width="54" height="54" viewBox="0 0 54 54">
+                        <path d="M27,8 L44,16 L44,28 C44,39 27,47 27,47 C27,47 10,39 10,28 L10,16 Z" fill="#1B5AA6" />
+                        <circle cx="27" cy="26" r="6" fill="#25A9E0" />
+                    </svg>
+                    <div class="gdp-card-title">Basic Vaccination</div>
+                    <div class="gdp-card-sub">Aged 12–23 months</div>
+                    <div class="gdp-card-val">94.0%</div>
+                </div>
+
+                <div class="gdp-card green">
+                    <svg width="54" height="54" viewBox="0 0 54 54">
+                        <circle cx="27" cy="24" r="13" fill="none" stroke="#1B5AA6" stroke-width="3.5" />
+                        <rect x="21" y="37" width="12" height="7" fill="#4EA847" />
+                    </svg>
+                    <div class="gdp-card-title">Household Electricity</div>
+                    <div class="gdp-card-sub">97.7% Clean Lighting</div>
+                    <div class="gdp-card-val">74.1%</div>
+                </div>
+
+                <div class="gdp-card green">
+                    <svg width="54" height="54" viewBox="0 0 54 54">
+                        <rect x="12" y="28" width="30" height="16" rx="3" fill="#1B5AA6" />
+                        <path d="M22,26 C22,16 27,16 27,10" fill="none" stroke="#4EA847" stroke-width="3" />
+                        <path d="M32,26 C32,16 37,16 37,10" fill="none" stroke="#25A9E0" stroke-width="3" />
+                    </svg>
+                    <div class="gdp-card-title">Clean Cooking Fuel</div>
+                    <div class="gdp-card-sub" id="subCookingCard">Pop. Reliance: 4.7%</div>
+                    <div class="gdp-card-val" id="valCookingCard">6.5%</div>
+                </div>
+
+                <div class="gdp-card green">
+                    <svg width="54" height="54" viewBox="0 0 54 54">
+                        <path d="M27,10 C27,10 12,28 12,37 C12,45 19,50 27,50 C35,50 42,45 42,37 C42,28 27,10 27,10 Z"
+                            fill="#25A9E0" />
+                    </svg>
+                    <div class="gdp-card-title">Basic Sanitation</div>
+                    <div class="gdp-card-sub">Safe Disposal: 82.5%</div>
+                    <div class="gdp-card-val">71.3%</div>
+                </div>
+
+                <div class="gdp-card navy">
+                    <svg width="54" height="54" viewBox="0 0 54 54">
+                        <polygon points="27,12 6,24 27,36 48,24" fill="#1B5AA6" />
+                        <rect x="17" y="36" width="20" height="8" fill="#25A9E0" />
+                    </svg>
+                    <div class="gdp-card-title">Secondary NAR</div>
+                    <div class="gdp-card-sub">GPI Parity: 1.37</div>
+                    <div class="gdp-card-val">29.7%</div>
+                </div>
+
+                <div class="gdp-card navy">
+                    <svg width="54" height="54" viewBox="0 0 54 54">
+                        <rect x="17" y="8" width="20" height="38" rx="4" fill="none" stroke="#1B5AA6"
+                            stroke-width="3" />
+                        <rect x="20" y="13" width="14" height="25" fill="#25A9E0" />
+                    </svg>
+                    <div class="gdp-card-title">Mobile Ownership</div>
+                    <div class="gdp-card-sub">37.9% Smartphone</div>
+                    <div class="gdp-card-val">83.7%</div>
+                </div>
+            </div>
+
+            <div class="note-line">
+                Note: All figures presented reflect official findings from the 2025 Rwanda Demographic and Health Survey
+                (RDHS 2025)
+            </div>
+        </div>
+    </div>
+
+    <div class="imigongo-strip"></div>
+    <footer>
+        <div>nisr | National Institute of Statistics of Rwanda</div>
+        <div class="alu-credit">Designed by Methode Duhujubumwe &amp; Keira Mutoni (ALU)</div>
+        <div>+250 788 38 3103 | www.statistics.gov.rw | info@statistics.gov.rw</div>
+    </footer>
+
+    <script>
+        const rdhsRegions = {
+            National: {
+                title: "NATIONAL TOTAL (14,283 WOMEN)",
+                sample: "14,283",
+                anyCpr: 69.3,
+                modernCpr: 64.2,
+                unmet: 8.9,
+                demandSat: "88.7% of Total Family Planning Demand Satisfied",
+                tfr: 3.7,
+                wantedTfr: 2.8,
+                teen: 8.1,
+                teenSub: "5.6% live birth | 2.3% currently pregnant",
+                ins: "86.0%",
+                birthReg: "95.1%",
+                u5m: "36 ‰",
+                u5mNote: "5-Yr Rate (CI: 31–41) | Infant: 27‰",
+                cookVal: "6.5%",
+                cookSub: "Pop. Reliance: 4.7%"
+            },
+            Urban: {
+                title: "URBAN RESIDENCE (4,570 WOMEN)",
+                sample: "4,570",
+                anyCpr: 65.1,
+                modernCpr: 60.9,
+                unmet: 9.7,
+                demandSat: "87.1% of Urban FP Demand Satisfied",
+                tfr: 3.4,
+                wantedTfr: 2.6,
+                teen: 5.9,
+                teenSub: "4.1% live birth | 1.6% currently pregnant",
+                ins: "85.8%",
+                birthReg: "95.8%",
+                u5m: "32 ‰",
+                u5mNote: "5-Yr Urban Rate | Infant: 25‰",
+                cookVal: "18.6%",
+                cookSub: "Urban Pop. Reliance: 14.2%"
+            },
+            Rural: {
+                title: "RURAL RESIDENCE (9,713 WOMEN)",
+                sample: "9,713",
+                anyCpr: 71.1,
+                modernCpr: 65.6,
+                unmet: 8.5,
+                demandSat: "89.3% of Rural FP Demand Satisfied",
+                tfr: 3.9,
+                wantedTfr: 2.9,
+                teen: 9.0,
+                teenSub: "6.3% live birth | 2.6% currently pregnant",
+                ins: "86.1%",
+                birthReg: "94.8%",
+                u5m: "38 ‰",
+                u5mNote: "5-Yr Rural Rate | Infant: 28‰",
+                cookVal: "1.3%",
+                cookSub: "Rural Pop. Reliance: 1.0%"
+            },
+            Kigali: {
+                title: "CITY OF KIGALI (2,290 WOMEN)",
+                sample: "2,290",
+                anyCpr: 65.8,
+                modernCpr: 61.3,
+                unmet: 8.5,
+                demandSat: "88.5% of Kigali FP Demand Satisfied",
+                tfr: 3.1,
+                wantedTfr: 2.3,
+                teen: 6.6,
+                teenSub: "4.8% live birth | 1.8% currently pregnant",
+                ins: "83.7%",
+                birthReg: "96.5%",
+                u5m: "32 ‰",
+                u5mNote: "10-Yr Rate | Infant: 27‰ | Neonatal: 14‰",
+                cookVal: "19.6%",
+                cookSub: "Highest Clean Fuel Share (Gini: 0.20)"
+            },
+            Northern: {
+                title: "NORTHERN PROVINCE (2,089 WOMEN)",
+                sample: "2,089",
+                anyCpr: 76.1,
+                modernCpr: 72.1,
+                unmet: 5.4,
+                demandSat: "93.3% of Northern FP Demand Satisfied",
+                tfr: 3.4,
+                wantedTfr: 2.7,
+                teen: 4.7,
+                teenSub: "Lowest Teenage Pregnancy in Rwanda",
+                ins: "93.5%",
+                birthReg: "96.3%",
+                u5m: "30 ‰",
+                u5mNote: "Lowest U5 Mortality | Infant: 22‰",
+                cookVal: "2.3%",
+                cookSub: "Pop. Clean Cooking Reliance (Gini: 0.23)"
+            },
+            Southern: {
+                title: "SOUTHERN PROVINCE (3,087 WOMEN)",
+                sample: "3,087",
+                anyCpr: 70.5,
+                modernCpr: 63.7,
+                unmet: 8.5,
+                demandSat: "89.2% of Southern FP Demand Satisfied",
+                tfr: 3.8,
+                wantedTfr: 2.8,
+                teen: 7.0,
+                teenSub: "5.0% live birth | 1.8% currently pregnant",
+                ins: "85.2%",
+                birthReg: "93.6%",
+                u5m: "35 ‰",
+                u5mNote: "10-Yr Rate | Infant: 27‰ | Neonatal: 17‰",
+                cookVal: "2.5%",
+                cookSub: "Pop. Clean Cooking Reliance (Gini: 0.28)"
+            },
+            Western: {
+                title: "WESTERN PROVINCE (2,949 WOMEN)",
+                sample: "2,949",
+                anyCpr: 67.0,
+                modernCpr: 61.0,
+                unmet: 11.1,
+                demandSat: "85.8% of Western FP Demand Satisfied",
+                tfr: 3.9,
+                wantedTfr: 2.9,
+                teen: 6.6,
+                teenSub: "4.7% live birth | 1.7% currently pregnant",
+                ins: "85.4%",
+                birthReg: "95.9%",
+                u5m: "36 ‰",
+                u5mNote: "10-Yr Rate | Infant: 28‰ | Neonatal: 17‰",
+                cookVal: "2.0%",
+                cookSub: "Pop. Clean Cooking Reliance (Gini: 0.27)"
+            },
+            Eastern: {
+                title: "EASTERN PROVINCE (3,868 WOMEN)",
+                sample: "3,868",
+                anyCpr: 68.1,
+                modernCpr: 64.0,
+                unmet: 9.6,
+                demandSat: "87.7% of Eastern FP Demand Satisfied",
+                tfr: 4.0,
+                wantedTfr: 3.1,
+                teen: 12.1,
+                teenSub: "Highest Teenage Pregnancy in Rwanda",
+                ins: "84.2%",
+                birthReg: "94.5%",
+                u5m: "47 ‰",
+                u5mNote: "Highest U5 Mortality | Infant: 34‰",
+                cookVal: "2.7%",
+                cookSub: "Pop. Clean Cooking Reliance (Gini: 0.28)"
+            }
+        };
+
+        function selectRegion(key) {
+            const d = rdhsRegions[key];
+            document.getElementById("hubTitle").textContent = d.title;
+            document.getElementById("donutSample").textContent = d.sample;
+            document.getElementById("hubLeftPct").textContent = d.anyCpr.toFixed(1) + "%";
+            document.getElementById("hubRightPct").textContent = (100 - d.anyCpr).toFixed(1) + "%";
+
+            const arcLen = Math.round((d.anyCpr / 100) * 440);
+            document.getElementById("centerDonutArc").setAttribute("stroke-dasharray", `${arcLen} 440`);
+
+            document.getElementById("barModernCpr").style.width = d.modernCpr + "%";
+            document.getElementById("valModernCpr").textContent = d.modernCpr.toFixed(1) + "%";
+            document.getElementById("barUnmet").style.width = (d.unmet * 3) + "%";
+            document.getElementById("valUnmet").textContent = d.unmet.toFixed(1) + "%";
+            document.getElementById("subDemand").textContent = d.demandSat;
+
+            document.getElementById("barTfr").style.width = (d.tfr / 6.2 * 100) + "%";
+            document.getElementById("valTfr").textContent = d.tfr.toFixed(1);
+            document.getElementById("capTfr").textContent = `Total Fertility Rate (Wanted TFR: ${d.wantedTfr.toFixed(1)} | Ideal: 3.2)`;
+
+            document.getElementById("barTeen").style.width = (d.teen * 4) + "%";
+            document.getElementById("valTeen").textContent = d.teen.toFixed(1) + "%";
+            document.getElementById("subTeen").textContent = d.teenSub;
+
+            document.getElementById("valIns").textContent = d.ins;
+            document.getElementById("valBirthReg").textContent = d.birthReg;
+            document.getElementById("valU5m").textContent = d.u5m;
+            document.getElementById("noteU5m").textContent = d.u5mNote;
+            document.getElementById("valCookingCard").textContent = d.cookVal;
+            document.getElementById("subCookingCard").textContent = d.cookSub;
+
+            document.querySelectorAll("#regionButtons .filter-btn").forEach(btn => {
+                btn.classList.toggle("active", btn.getAttribute("data-region") === key);
+            });
+        }
+
+        document.querySelectorAll("#regionButtons .filter-btn").forEach(btn => {
+            btn.addEventListener("click", () => selectRegion(btn.getAttribute("data-region")));
+        });
+    </script>
+</body>
+
+</html>
